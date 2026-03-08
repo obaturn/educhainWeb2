@@ -1,0 +1,35 @@
+{
+  "name": "copy-of-copy-of-educhain---decentralized-education-platform",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:all": "concurrently \"npm run dev\" \"cd backend && npm run dev\""
+  },
+  "dependencies": {
+    "@mysten/dapp-kit": "^0.17.7",
+    "@mysten/sui": "^1.37.6",
+    "@tanstack/react-query": "^5.87.1",
+    "axios": "^1.11.0",
+    "jest": "^30.1.3",
+    "multer": "^2.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "supertest": "^7.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "typescript": "~5.8.2",
+    "vite": "^6.3.5"
+  }
+}
