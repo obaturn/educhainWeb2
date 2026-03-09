@@ -170,6 +170,7 @@ const App: React.FC = () => {
                         onGoogleLogin={() => setIsWalletModalOpen(true)}
                         onLinkedInLogin={() => setIsWalletModalOpen(true)}
                         onFacebookLogin={() => setIsWalletModalOpen(true)}
+                        isSignup={false}
                     />
                 );
             case 'signup':
@@ -177,10 +178,12 @@ const App: React.FC = () => {
                     <LoginPage 
                         onBack={() => setCurrentView('dashboard')}
                         onLogin={(email, password) => handleSignup('', email, password, 'student')}
-                        onShowSignup={() => setCurrentView('login')}
+                        onSignup={handleSignup}
+                        onShowLogin={() => setCurrentView('login')}
                         onGoogleLogin={() => setIsWalletModalOpen(true)}
                         onLinkedInLogin={() => setIsWalletModalOpen(true)}
                         onFacebookLogin={() => setIsWalletModalOpen(true)}
+                        isSignup={true}
                     />
                 );
             default:
@@ -236,6 +239,7 @@ const App: React.FC = () => {
                         onGoogleLogin={() => setIsWalletModalOpen(true)}
                         onLinkedInLogin={() => setIsWalletModalOpen(true)}
                         onFacebookLogin={() => setIsWalletModalOpen(true)}
+                        isSignup={false}
                     />
                     {isWalletModalOpen && !showSignup && (
                         <AuthModal
@@ -259,10 +263,12 @@ const App: React.FC = () => {
                     <LoginPage 
                         onBack={() => setCurrentView('dashboard')}
                         onLogin={(email, password) => handleSignup('', email, password, 'student')}
-                        onShowSignup={() => setCurrentView('login')}
+                        onSignup={handleSignup}
+                        onShowLogin={() => setCurrentView('login')}
                         onGoogleLogin={() => setIsWalletModalOpen(true)}
                         onLinkedInLogin={() => setIsWalletModalOpen(true)}
                         onFacebookLogin={() => setIsWalletModalOpen(true)}
+                        isSignup={true}
                     />
                     {isWalletModalOpen && !showSignup && (
                         <AuthModal
