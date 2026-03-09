@@ -11,6 +11,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
     const [scrolled, setScrolled] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [visibleStats, setVisibleStats] = useState(false);
+    const [selectedProgramTab, setSelectedProgramTab] = useState('All');
     const statsRef = useRef<HTMLDivElement>(null);
 
     // Handle scroll effects
@@ -164,7 +165,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                                 e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,107,53,0.3)';
                             }}
                         >
-                            Apply Now
+                            Login Portal
                         </button>
                     </div>
                 </div>
@@ -723,7 +724,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                 </div>
             </section>
 
-            {/* Programs Section with Tabs */}
+            {/* Programs Section with Functional Tabs */}
             <section id="programmes" style={{ padding: '120px 20px', backgroundColor: '#f5f5f5' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: '60px' }}>
@@ -740,25 +741,26 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                         {['All', 'Career', 'Creative Tech', 'Cyber Security', 'Data', 'Entrepreneurship', 'Tech'].map((tab, index) => (
                             <button
                                 key={index}
+                                onClick={() => setSelectedProgramTab(tab)}
                                 style={{
                                     padding: '12px 28px',
                                     borderRadius: '50px',
-                                    border: index === 0 ? 'none' : '2px solid #ddd',
-                                    backgroundColor: index === 0 ? '#6C5CE7' : 'white',
-                                    color: index === 0 ? 'white' : '#666',
+                                    border: selectedProgramTab === tab ? 'none' : '2px solid #ddd',
+                                    backgroundColor: selectedProgramTab === tab ? '#6C5CE7' : 'white',
+                                    color: selectedProgramTab === tab ? 'white' : '#666',
                                     fontSize: '14px',
                                     fontWeight: '600',
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease'
                                 }}
                                 onMouseEnter={(e) => {
-                                    if (index !== 0) {
+                                    if (selectedProgramTab !== tab) {
                                         e.currentTarget.style.borderColor = '#6C5CE7';
                                         e.currentTarget.style.color = '#6C5CE7';
                                     }
                                 }}
                                 onMouseLeave={(e) => {
-                                    if (index !== 0) {
+                                    if (selectedProgramTab !== tab) {
                                         e.currentTarget.style.borderColor = '#ddd';
                                         e.currentTarget.style.color = '#666';
                                     }
@@ -769,7 +771,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                         ))}
                     </div>
 
-                    {/* Program Cards */}
+                    {/* Program Cards - Filtered */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', marginBottom: '50px' }}>
                         {[
                             { 
@@ -794,6 +796,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                                 status: 'Coming soon',
                                 statusColor: '#FFA500',
                                 img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+                                category: 'Data'
+                            },
+                            { 
+                                title: 'Data Science & AI', 
+                                duration: '12 Months', 
+                                status: 'Now Open',
+                                statusColor: '#00D9A5',
+                                img: 'https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&q=80',
                                 category: 'Data'
                             },
                             { 
@@ -829,14 +839,55 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                                 category: 'Cyber Security'
                             },
                             { 
+                                title: 'Ethical Hacking', 
+                                duration: '8 Months', 
+                                status: 'Coming soon',
+                                statusColor: '#FFA500',
+                                img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80',
+                                category: 'Cyber Security'
+                            },
+                            { 
                                 title: 'Product Design', 
                                 duration: '9 Months', 
                                 status: 'Coming soon',
                                 statusColor: '#FFA500',
                                 img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80',
                                 category: 'Creative Tech'
+                            },
+                            { 
+                                title: 'Business Management', 
+                                duration: '6 Months', 
+                                status: 'Now Open',
+                                statusColor: '#00D9A5',
+                                img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+                                category: 'Entrepreneurship'
+                            },
+                            { 
+                                title: 'Startup Founder Program', 
+                                duration: '12 Months', 
+                                status: 'Coming soon',
+                                statusColor: '#FFA500',
+                                img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80',
+                                category: 'Entrepreneurship'
+                            },
+                            { 
+                                title: 'Cloud Computing', 
+                                duration: '8 Months', 
+                                status: 'Now Open',
+                                statusColor: '#00D9A5',
+                                img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
+                                category: 'Tech'
+                            },
+                            { 
+                                title: 'Career Coaching', 
+                                duration: '3 Months', 
+                                status: 'Now Open',
+                                statusColor: '#00D9A5',
+                                img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80',
+                                category: 'Career'
                             }
-                        ].map((program, index) => (
+                        ].filter(program => selectedProgramTab === 'All' || program.category === selectedProgramTab)
+                        .map((program, index) => (
                             <div key={index} style={{ 
                                 backgroundColor: 'white', 
                                 borderRadius: '16px', 
@@ -878,7 +929,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToLogin }) => {
                                     <h3 style={{ fontSize: '20px', fontWeight: '900', color: '#1a1a1a', marginBottom: '8px' }}>{program.title}</h3>
                                     <p style={{ fontSize: '14px', color: '#999', marginBottom: '20px' }}>{program.duration}</p>
                                     
-                                    <button style={{
+                                    <button 
+                                    onClick={onNavigateToLogin}
+                                    style={{
                                         width: '100%',
                                         backgroundColor: '#00D9A5',
                                         color: 'white',

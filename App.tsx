@@ -228,26 +228,56 @@ const App: React.FC = () => {
         // Show login/signup pages when navigating to those views
         if (currentView === 'login') {
             return (
-                <LoginPage 
-                    onBack={() => setCurrentView('dashboard')}
-                    onLogin={handleLogin}
-                    onShowSignup={() => setCurrentView('signup')}
-                    onGoogleLogin={() => setIsWalletModalOpen(true)}
-                    onLinkedInLogin={() => setIsWalletModalOpen(true)}
-                    onFacebookLogin={() => setIsWalletModalOpen(true)}
-                />
+                <>
+                    <LoginPage 
+                        onBack={() => setCurrentView('dashboard')}
+                        onLogin={handleLogin}
+                        onShowSignup={() => setCurrentView('signup')}
+                        onGoogleLogin={() => setIsWalletModalOpen(true)}
+                        onLinkedInLogin={() => setIsWalletModalOpen(true)}
+                        onFacebookLogin={() => setIsWalletModalOpen(true)}
+                    />
+                    {isWalletModalOpen && !showSignup && (
+                        <AuthModal
+                            onClose={() => setIsWalletModalOpen(false)}
+                            onLogin={handleLogin}
+                            onShowSignup={() => setShowSignup(true)}
+                        />
+                    )}
+                    {isWalletModalOpen && showSignup && (
+                        <SignupModal
+                            onClose={() => setIsWalletModalOpen(false)}
+                            onSignup={handleSignup}
+                        />
+                    )}
+                </>
             );
         }
         if (currentView === 'signup') {
             return (
-                <LoginPage 
-                    onBack={() => setCurrentView('dashboard')}
-                    onLogin={(email, password) => handleSignup('', email, password, 'student')}
-                    onShowSignup={() => setCurrentView('login')}
-                    onGoogleLogin={() => setIsWalletModalOpen(true)}
-                    onLinkedInLogin={() => setIsWalletModalOpen(true)}
-                    onFacebookLogin={() => setIsWalletModalOpen(true)}
-                />
+                <>
+                    <LoginPage 
+                        onBack={() => setCurrentView('dashboard')}
+                        onLogin={(email, password) => handleSignup('', email, password, 'student')}
+                        onShowSignup={() => setCurrentView('login')}
+                        onGoogleLogin={() => setIsWalletModalOpen(true)}
+                        onLinkedInLogin={() => setIsWalletModalOpen(true)}
+                        onFacebookLogin={() => setIsWalletModalOpen(true)}
+                    />
+                    {isWalletModalOpen && !showSignup && (
+                        <AuthModal
+                            onClose={() => setIsWalletModalOpen(false)}
+                            onLogin={handleLogin}
+                            onShowSignup={() => setShowSignup(true)}
+                        />
+                    )}
+                    {isWalletModalOpen && showSignup && (
+                        <SignupModal
+                            onClose={() => setIsWalletModalOpen(false)}
+                            onSignup={handleSignup}
+                        />
+                    )}
+                </>
             );
         }
         return (
